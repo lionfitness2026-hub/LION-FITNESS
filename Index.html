@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lion Fitness — Accueil</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Lion Fitness — Salle de sport. Coaching, abonnements, galerie et histoire. Rejoins-nous et commence ta transformation." />
+<style>
+:root{
+  --bg:#0b0b0b;
+  --card:#0f0f12;
+  --neon:#39FF14;
+  --muted:#9aa0a6;
+  --accent:#00ffd9;
+  --glass: rgba(255,255,255,0.03);
+  --container:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Inter,system-ui,Arial,sans-serif;background:radial-gradient(ellipse at 10% 10%, rgba(57,255,20,0.03), transparent 10%), var(--bg);color:#fff;line-height:1.45;overflow-x:hidden;position:relative;}
+
+/* Background video */
+#bg-video{
+  position:fixed;
+  top:50%;
+  left:50%;
+  width:120%;
+  height:auto;
+  transform:translate(-50%,-50%);
+  object-fit:cover;
+  z-index:-2;
+  opacity:0.25;
+}
+
+/* Wrap */
+.wrap{max-width:var(--container);margin:0 auto;padding:28px;position:relative;z-index:1}
+
+/* Header */
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 0;position:relative}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{width:64px;height:64px;object-fit:contain;border-radius:8px}
+nav{display:flex;align-items:center;gap:18px}
+nav a{color:var(--muted);text-decoration:none;margin-left:18px}
+nav a.btn{margin-left:0}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer}
+.hamburger div{width:28px;height:3px;background:var(--neon);border-radius:2px;transition:0.3s}
+
+/* Neon titles */
+.neon-title{font-family:'Anton',sans-serif;font-size:36px;letter-spacing:1px;color:var(--neon);text-shadow:0 0 6px rgba(57,255,20,0.6),0 0 18px rgba(57,255,20,0.25);}
+.neon-sub{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:14px;color:var(--neon);text-transform:uppercase}
+
+/* Buttons */
+.btn{background:linear-gradient(90deg,var(--neon),var(--accent));padding:10px 16px;border-radius:10px;color:#000;font-weight:700;text-decoration:none;display:inline-block;transition:0.3s}
+.btn:hover{filter:brightness(1.2); transform:scale(1.05);}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0;position:relative;z-index:1}
+.hero h1{font-family:'Anton',sans-serif;font-size:44px;margin:6px 0;color:#fff;text-shadow:0 0 6px var(--neon)}
+.hero .eyebrow{color:var(--neon);font-weight:600;margin-bottom:8px;font-size:16px}
+.hero p{color:var(--muted);max-width:620px}
+.hero .ctas{margin-top:18px;display:flex;gap:12px}
+
+/* Features cards */
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.6)}
+.features{display:flex;gap:12px;margin-top:22px}
+.feature{flex:1;padding:18px;border-radius:10px;background:var(--glass)}
+.feature h4{margin:6px 0}
+
+/* Story */
+.story{margin-top:34px;display:grid;grid-template-columns:1fr;gap:18px}
+.story .lead{font-size:18px;color:var(--muted)}
+.story .full{background:linear-gradient(90deg, rgba(57,255,20,0.02), transparent);padding:18px;border-radius:10px;color:#e6ffe6}
+
+/* Services & Pricing */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:18px}
+.service{padding:14px;border-radius:10px;background:var(--card)}
+.price{font-size:22px;font-weight:700;color:var(--neon);cursor:pointer;text-align:center;transition:0.3s}
+.price:hover{transform:scale(1.05);}
+
+/* Gallery & Equipment */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:18px}
+.gallery img,.equipment img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+
+/* Equipment */
+.equipment{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:18px}
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 0 15px;
+}
+
+.product-card {
+  background: #0e0e0e;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #1a1a1a;
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon);
+}
+.product-card img{
+    width:100%;
+    height:auto; /* باش تبقى الجودة الحقيقية */
+    object-fit:contain; /* ما يقطعش الصورة */
+    border-radius:8px;
+    image-rendering: high-quality; /* تحسين الجودة */
+}
+
+.product-card h4 {
+  color: white;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.product-card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 6px 0 10px;
+}
+
+.price {
+  color: var(--neon);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.btn-buy {
+  width: 100%;
+  padding: 10px;
+  background: var(--neon);
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.btn-buy:hover {
+  opacity: 0.8;
+}
+/* Couleurs néon alien */
+:root {
+  --alien-neon: #39FF14;   /* vert extraterrestre */
+  --alien-accent: #00FFD9; /* bleu cyan */
+}
+
+/* Texte flicker alien */
+.flicker-alien {
+  font-family: 'Bebas Neue', sans-serif;
+  color: var(--alien-neon);
+  font-size: 28px;
+  text-align: center;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 4px var(--alien-neon),
+    0 0 10px var(--alien-accent),
+    0 0 20px var(--alien-neon);
+  animation: alienFlicker 3s infinite;
+}
+
+/* Animation glitchy/flicker */
+@keyframes alienFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {opacity: 1; transform: translate(0,0);}
+  20%, 22%, 24%, 55% {opacity: 0.3; transform: translate(-2px,1px);}
+  40%, 60% {opacity:0.6; transform: translate(1px,-1px);}
+}
+/* Section Contact améliorée */
+.contact-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.contact-card {
+  background: rgba(57,255,20,0.05);
+  border: 1px solid rgba(57,255,20,0.2);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 0 12px rgba(57,255,20,0.2);
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(57,255,20,0.4);
+}
+
+.contact-card h4 {
+  color: var(--neon);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 6px var(--neon), 0 0 12px var(--accent);
+}
+
+.contact-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Map responsive */
+.contact-card iframe {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  border: 1px solid rgba(57,255,20,0.15);
+  box-shadow: 0 0 12px rgba(57,255,20,0.2);
+}
+/* Testimonials */
+.testimonials{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+.test{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:12px;border-radius:8px;flex:1;min-width:260px}
+.social-section {
+  margin-top: 40px;
+  text-align: center; /* centre le contenu */
+}
+
+.social-icons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  gap: 20px;
+}
+
+.social-icons img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+/* Couleurs officielles */
+.social-icons a.instagram img {
+  filter: drop-shadow(0 0 8px #E1306C);
+}
+.social-icons a.instagram img:hover {
+  filter: drop-shadow(0 0 12px #E1306C);
+  transform: scale(1.15);
+}
+
+.social-icons a.facebook img {
+  filter: drop-shadow(0 0 8px #1877F2);
+}
+.social-icons a.facebook img:hover {
+  filter: drop-shadow(0 0 12px #1877F2);
+  transform: scale(1.15);
+}
+
+.social-icons a.tiktok img {
+  filter: drop-shadow(0 0 8px #69C9D0);
+}
+.social-icons a.tiktok img:hover {
+  filter: drop-shadow(0 0 12px #69C9D0);
+  transform: scale(1.15);
+}
+
+.social-icons a.whatsapp img {
+  filter: drop-shadow(0 0 8px #25D366);
+}
+.social-icons a.whatsapp img:hover {
+  filter: drop-shadow(0 0 12px #25D366);
+  transform: scale(1.15);
+}
+}
+/* Contact Section */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 18px;
+  margin-top: 18px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.6));
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Form inputs & textarea */
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(57, 255, 20, 0.3); /* néon léger */
+  background: rgba(0, 0, 0, 0.4); /* fond sombre semi-transparent */
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border: 1px solid var(--neon);
+  box-shadow: 0 0 8px var(--neon);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Submit button */
+form button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, var(--neon), var(--accent));
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+form button:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+  box-shadow: 0 0 12px var(--neon);
+}
+
+/* Contact Title */
+.contact h3 {
+  color: var(--neon);
+  text-align: center;
+  text-shadow: 0 0 6px var(--neon), 0 0 18px rgba(57, 255, 20, 0.4);
+  margin-bottom: 12px;
+}
+
+/* Contact Info / WhatsApp */
+.contact p {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.contact p a {
+  color: var(--neon);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.contact p a:hover {
+  text-shadow: 0 0 6px var(--neon), 0 0 12px rgba(57, 255, 20, 0.4);
+}
+
+/* Neon Quote */
+.neon-quote{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--neon);text-align:center;margin:20px 0;animation:neonPulse 2.5s infinite ease-in-out}
+@keyframes neonPulse{0%{text-shadow:0 0 6px var(--neon),0 0 20px var(--neon);}50%{text-shadow:0 0 2px var(--neon);}100%{text-shadow:0 0 6px var(--neon),0 0 20px var(--neon);}}
+
+/* Hero float image */
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+/* Responsive */
+@media(max-width:900px){.hero{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.logo img{width:56px;height:56px}.neon-title{font-size:28px}.hero h1{font-size:32px}}
+@media(max-width:600px){.features,.testimonials,.grid-3,.equipment{flex-direction:column;grid-template-columns:1fr}.gallery img{height:120px}
+nav{display:none;position:absolute;top:64px;right:28px;flex-direction:column;background:var(--card);padding:12px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.6);}
+.hamburger{display:flex;}
+nav.show{display:flex;}}
+
+/* CTA & pricing hover */
+.price:hover{filter:brightness(1.2);color:#fff}
+/* Footer techno / numérique */
+.footer-digital {
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  color: #39FF14;           /* couleur néon verte */
+  text-shadow: 
+     0 0 4px #39FF14, 
+     0 0 10px #39FF14, 
+     0 0 20px #39FF14, 
+     0 0 30px #00ffd9, 
+     0 0 40px #00ffd9;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(57,255,20,0.2);
+  background: #0b0b0b;
+  animation: flicker 2.5s infinite alternate;
+}
+/* === Section Services === */
+#services {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#services h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 28px;
+  color: var(--neon);
+  text-shadow: 0 0 6px var(--neon), 0 0 18px rgba(57,255,20,0.25);
+  margin-bottom: 28px;
+  animation: flicker 2.5s infinite;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.service.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,255,57,0.6);
+}
+
+.service.card h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: var(--neon);
+  margin-bottom: 8px;
+  text-shadow: 0 0 4px var(--neon);
+}
+
+.service.card p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Flicker animation pour les titres néon */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 22%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+/* Style spécifique pour “Made with discipline” */
+.footer-digital .digital-text {
+  color: #00ffd9;
+  text-shadow: 
+     0 0 3px #00ffd9, 
+     0 0 6px #00ffd9, 
+     0 0 12px #39FF14;
+  font-weight: 700;
+}
+
+/* Petit effet “flicker” */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 24%, 55% { opacity: 0.6; }
+}
+/* Section Tarifs */
+#services {
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  margin: 50px auto;
+}
+
+#services .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+#services .service {
+  background: rgba(15, 15, 18, 0.8);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+#services .service:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.5);
+  border-color: var(--neon);
+}
+
+#services .price {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--neon);
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-shadow: 0 0 4px var(--neon), 0 0 12px rgba(57,255,20,0.3);
+}
+
+#services .price:hover {
+  color: #fff;
+  transform: scale(1.1);
+  text-shadow: 0 0 8px var(--neon), 0 0 18px rgba(57,255,20,0.5);
+}
+
+#services div {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 6px;
+}
+</style>
+</head>
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop playsinline id="bg-video" poster="images/hero-fallback.jpg">
+  <source src="videos/hero1.mp4" type="video/mp4" />
+</video>
+
+<div class="wrap">
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="logo">
+        <img src="images/logo.png" alt="Lion Fitness Logo" />
+        <div>
+          <div class="neon-title">
+  Lion <span style="color:#ffffff;">Fitness</span>
+</div>
+          <div class="neon-sub">Force • Discipline • Honneur</div>
+        </div>
+      </div>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+    <nav id="nav-links">
+      <a href="#services">Services</a>
+      <a href="#gallery">Galerie</a>
+      <a href="#about">À propos</a>
+      <a href="#contact" class="btn">Inscription</a>
+    </nav>
+  </header>
+
+  <!-- Neon Quote -->
+  <div class="neon-quote">
+    <span>"La discipline crée la force. La force crée le respect."</span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Ouverture spéciale</div>
+      <h1>Transformez votre corps. Bâtissez votre puissance.</h1>
+      <p>Rejoignez Lion Fitness — Coaching personnalisé, équipements professionnels et une communauté qui pousse ses limites. Offre d'ouverture valable jusqu'au <strong>12 December 2025 </strong>.</p>
+      <div class="ctas">
+        <a href="#contact" class="btn">Séance d'essai gratuite</a>
+        <a href="#contact" class="btn" style="background:transparent;color:var(--neon);border:1px solid var(--neon)">Voir les abonnements</a>
+      </div>
+      <h1 class="flicker-alien">Lion Fitness — Force Extraterrestre</h1>
+<p class="flicker-alien" style="font-size:16px;">Discipline • Puissance • Au-delà des limites humaines</p>
+    </div>
+    <aside class="card" style="position:relative;overflow:hidden;">
+      <img src="images/coash.png" alt="Coach" style="width:100%;height:100%;object-fit:contain;animation:float 4s ease-in-out infinite;">
+    </aside>
+  </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h3>Nos Services</h3>
+      <div class="grid-3">
+        <div class="service card">
+          <h4>Musculation & Fitness</h4>
+          <p>Salle équipée pour perte de poids, prise de masse et tonification.</p>
+        </div>
+        <div class="service card">
+          <h4>Coaching Privé</h4>
+          <p>Programme personnalisé avec suivi et conseils nutritionnels.</p>
+        </div>
+        <div class="service card">
+          <h4>Cours Collectifs</h4>
+          <p>HIIT, Abdos, Cardio et cours pour tous les niveaux.</p>
+        </div>
+      </div>
+
+<!-- Tarifs -->
+<section id="services" style="margin-top:50px;">
+  <h3 class="neon-title" style="text-align:center;font-size:28px;">
+    Abonnements & Tarifs
+  </h3>
+  <div class="grid-3">
+    <div class="service card">
+      <div class="price" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">199 DH</div>
+      <div>1 mois — Offre d'ouverture</div>
+    </div>
+    <div class="service card">
+      <div class="price" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">499 DH</div>
+      <div>3 mois</div>
+    </div>
+    <div class="service card">
+      <div class="price" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">899 DH</div>
+      <div>6 mois</div>
+    </div>
+  </div>
+</section>
+    
+<!-- Galerie -->
+  <section id="gallery" style="margin-top:40px;">
+    <h3 class="neon-title" style="font-size:28px;text-align:center;">Galerie</h3>
+    <p style="text-align:center;color:var(--muted);margin-bottom:14px;">Quelques aperçus de notre salle & équipements</p>
+
+    <div class="gallery">
+      <img src="images/gal1.png" alt="Gym 1">
+      <img src="images/gal2.png" alt="Gym 2">
+      <img src="images/gal3.png" alt="Gym 3">
+      <img src="images/gal4.png" alt="Gym 4">
+      <img src="images/neonjs.png" alt="Gym 5">
+      <img src="images/gal6.png" alt="Gym 6">
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section id="about" style="margin-top:50px;">
+    <h3 class="neon-title" style="font-size:28px;text-align:center;">Notre Histoire</h3>
+
+    <div class="story">
+      <p class="lead">
+        Lion Fitness est né d'une vision : créer une salle de sport où la discipline, la force et le respect forment l’ADN de chaque athlète.
+      </p>
+      <div class="full">
+        Depuis notre ouverture, nous accueillons tous ceux qui veulent changer leur vie : débutants, confirmés, athlètes…  
+        Notre mission est simple : vous donner les outils, l’ambiance et l’énergie nécessaires pour dépasser vos limites et devenir la meilleure version de vous-même.
+      </div>
+    </div>
+  </section>
+
+<!-- === Coaching personnalisé — 1 semaine gratuite === -->
+<section id="coaching" style="margin-top:50px;">
+  <div class="card" style="padding:22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;">
+<!-- Image coach améliorée -->
+<div style="flex:0 0 160px; display:flex; justify-content:center; align-items:center;">
+  <img src="images/coachothman.jpg" alt="Othman Chiboub — Coach diplômé"
+       style="width:160px; height:160px; object-fit:contain; border-radius:50%; 
+              border:2px solid rgba(57,255,20,0.4); 
+              box-shadow: 0 0 12px rgba(57,255,20,0.6); 
+              transition:0.3s; 
+              animation: float 4s ease-in-out infinite;">
+</div>
+
+    <!-- Texte -->
+    <div style="flex:1;min-width:220px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <h3 class="neon-title" style="font-size:22px;margin:0;">Coaching personnalisé</h3>
+        <span style="background:var(--neon);color:#000;padding:6px 10px;border-radius:8px;font-weight:700;font-size:13px;">1 semaine <strong>gratuite</strong></span>
+      </div>
+
+      <p style="color:var(--muted);margin:8px 0 12px;">
+        Offre spéciale : une semaine d’essai gratuite avec <strong>Othman Chiboub</strong>, coach diplômé (certification internationale).
+        Programme personnalisé — évaluation, plan nutritionnel et suivi quotidien.
+      </p>
+
+      <!-- Points / bullets -->
+      <ul style="color:#e6ffe6;margin:0 0 12px 18px;">
+        <li>Coach : Othman Chiboub — Diplôme international</li>
+        <li>Évaluation initiale & programme sur-mesure</li>
+        <li>Suivi quotidien & conseils nutrition</li>
+      </ul>
+
+      <!-- CTA -->
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+        <!-- WhatsApp pré-rempli : remplace le numéro -->
+        <a href="https://wa.me/2126XXXXXXXX?text=Salam%20je%20voudrais%20réserver%20la%20semaine%20d'essai%20gratuite%20avec%20Othman%20Chiboub" target="_blank" class="btn" style="background:linear-gradient(90deg,var(--neon),var(--accent));color:#000;">
+          Réserver ma semaine gratuite
+        </a>
+
+        <a href="#contact" class="btn" style="background:transparent;color:var(--neon);border:1px solid var(--neon);">
+          Plus d'infos
+        </a>
+      </div>
+    </div>
+
+    <!-- Badge diplôme / trust -->
+    <div style="flex:0 0 120px;text-align:center;">
+      <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;">
+        <img src="images/diploma.png" alt="Diplôme" style="width:48px;height:48px;margin-bottom:8px;">
+        <div style="color:var(--neon);font-weight:700;font-size:13px;">Certification</div>
+        <div style="color:var(--muted);font-size:13px">Internationale</div>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Équipements -->
+  <section id="equipment" style="margin-top:50px;">
+    <h3 class="neon-title" style="font-size:28px;text-align:center;">Équipements Professionnels</h3>
+
+    <div class="equipment">
+      <img src="images/musculation1.png" alt="Machine 1">
+      <img src="images/musculation2.png" alt="Machine 2">
+      <img src="images/cardio2.png" alt="Machine 3">
+      <img src="images/musculation4.png" alt="Machine 4">
+      <img src="images/musculation5.png" alt="Machine 5">
+      <img src="images/cardio1.png" alt="Machine 6">
+    </div>
+  </section>
+<!-- Produits / Compléments -->
+<section id="products" style="margin-top:60px;">
+  <h3 class="neon-title" style="font-size:28px;text-align:center;">
+    Compléments & Nutrition
+  </h3>
+  <p style="text-align:center;color:var(--muted);margin-bottom:20px;">
+    Découvrez nos meilleurs produits pour booster vos performances.
+  </p>
+<!-- Image générale de tous les produits -->
+<div style="text-align:center; margin-bottom:30px;">
+  <img src="images/produit.png"
+       style="max-width:90%; border-radius:15px; box-shadow:0 0 15px #ccc;">
+</div>
+  <div class="products">
+    <div class="product-card">
+      <img src="images/whey.png" alt="Whey Protein">
+      <h4>Whey Protein</h4>
+      <p>Protéine pure pour prise de masse et récupération rapide.</p>
+      <span class="price">249 MAD</span>
+      <a 
+  class="btn-buy" 
+  href="https://wa.me/2126XXXXXXXX?text=Salam%20je%20veux%20acheter%20ce%20produit" 
+  target="_blank">
+  Acheter
+</a>
+    </div>
+
+    <div class="product-card">
+      <img src="images/créatine.png" alt="Créatine">
+      <h4>Créatine Monohydrate</h4>
+      <p>Augmente la force, explosivité et performance.</p>
+      <span class="price">199 MAD</span>
+      <a 
+  class="btn-buy" 
+  href="https://wa.me/2126XXXXXXXX?text=Salam%20je%20veux%20acheter%20ce%20produit" 
+  target="_blank">
+  Acheter
+</a>
+    </div>
+
+    <div class="product-card">
+      <img src="images/Bcaa.png" alt="BCAA">
+      <h4>BCAA 2:1:1</h4>
+      <p>Récupération musculaire rapide + anti-fatigue.</p>
+      <span class="price">179 MAD</span>
+      <a 
+  class="btn-buy" 
+  href="https://wa.me/2126XXXXXXXX?text=Salam%20je%20veux%20acheter%20ce%20produit" 
+  target="_blank">
+  Acheter
+</a>
+    </div>
+
+    <div class="product-card">
+      <img src="images/preworkout.png" alt="Pre-Workout">
+      <h4>Pre-Workout</h4>
+      <p>Énergie extrême, focus, pump exceptionnel.</p>
+      <span class="price">229 MAD</span>
+      <a 
+  class="btn-buy" 
+  href="https://wa.me/2126XXXXXXXX?text=Salam%20je%20veux%20acheter%20ce%20produit" 
+  target="_blank">
+  Acheter
+</a>
+    </div>
+
+    <div class="product-card">
+      <img src="images/shacker.png" alt="Shaker">
+      <h4>Shaker 700ml</h4>
+      <p>Shaker anti-fuite pour vos mélanges quotidiens.</p>
+      <span class="price">49 MAD</span>
+      <a 
+  class="btn-buy" 
+  href="https://wa.me/2126XXXXXXXX?text=Salam%20je%20veux%20acheter%20ce%20produit" 
+  target="_blank">
+  Acheter
+</a>
+    </div>
+
+    <div class="product-card">
+      <img src="images/Multivitamines.png" alt="Vitamines">
+      <h4>Multivitamines</h4>
+      <p>Boost immunitaire + énergie tout au long de la journée.</p>
+      <span class="price">129 MAD</span>
+     <a 
+  class="btn-buy" 
+  href="https://wa.me/2126XXXXXXXX?text=Salam%20je%20veux%20acheter%20ce%20produit" 
+  target="_blank">
+  Acheter
+</a>
+    </div>
+  </div>
+</section>
+  <!-- Témoignages -->
+  <section id="testimonials" style="margin-top:50px;">
+    <h3 class="neon-title" style="font-size:28px;text-align:center;">Avis des Membres</h3>
+
+    <div class="testimonials">
+      <div class="test">
+        Les tarifs proposés par Lion Fitness sont très attractifs et accessibles, surtout pour la qualité des services et des installations. Cela permet à chacun de profiter pleinement des séances sans se soucier du budget, ce qui rend l’expérience encore plus motivante et agréable.
+        <br><span style="color:var(--neon);font-size:14px;">— Hamza</span>
+      </div>
+      <div class="test">
+        Le coach de Lion Fitness est très professionnel et à l’écoute. son accompagnement personnalisé aide vraiment à progresser et à rester motivé, ce qui rend chaque séance plus efficace et agréable.
+        <br><span style="color:var(--neon);font-size:14px;">— Sara</span>
+      </div>
+      <div class="test">
+      Les machines de Lion Fitness sont modernes, bien entretenues et variées, ce qui permet de travailler tous les groupes musculaires en toute sécurité. Elles offrent une expérience d’entraînement confortable et efficace pour tous les niveaux.
+        <br><span style="color:var(--neon);font-size:14px;">— Youssef</span>
+      </div>
+    </div>
+  </section>
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="card">
+      <h3>Contactez-nous</h3>
+      <p style="color:var(--muted)">Réservez votre séance d'essai via WhatsApp ou laissez-nous un message.</p>
+      <form onsubmit="handleForm(event)">
+        <input type="text" name="name" placeholder="Votre nom" required>
+        <input type="tel" name="phone" placeholder="Téléphone / WhatsApp" required>
+        <textarea name="msg" placeholder="Message (objectif, disponibilité)" rows="4"></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+      <p style="margin-top:12px;color:var(--neon)">WhatsApp: <a href="https://wa.me/212600000000" style="color:var(--neon)">+212 6X XX XX XX</a></p>
+    </div>
+  <section class="contact-section">
+  <!-- Adresse -->
+  <div class="contact-card">
+    <h4>Adresse</h4>
+    <p>Lot 7 groupe 2, Fadle ALLAH ,Mohammedia, Maroc</p>
+  </div>
+
+  <!-- Horaires -->
+  <div class="contact-card">
+    <h4>Horaires</h4>
+    <p>Lundi - Vendredi : 07:00 - 23:00
+    samedi : 09:00 - 18:00 </p>
+  </div>
+
+  <!-- Localisation -->
+  <div class="contact-card">
+    <h4>Localisation</h4>
+    <iframe 
+      src="https://www.google.com/maps?q=33.6891289,-7.3700995&hl=fr&z=15&output=embed"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+</section>
+    </aside>
+  <div class="social-icons">
+  <a href="https://instagram.com/..." target="_blank" class="instagram">
+    <img src="images/Icôneinstagram2.png" alt="Instagram">
+  </a>
+
+  <a href="https://facebook.com/..." target="_blank" class="facebook">
+    <img src="images/Icônefacebook.png" alt="Facebook">
+  </a>
+
+  <a href="https://tiktok.com/..." target="_blank" class="tiktok">
+    <img src="images/Icônetiktok.png" alt="TikTok">
+  </a>
+
+  <a href="https://wa.me/..." target="_blank" class="whatsapp">
+    <img src="images/Icônewhatsapp.png" alt="WhatsApp">
+  </a>
+</div>
+</section>
+<footer class="footer-digital">
+  © <span id="year"></span> Lion Fitness — Tous droits réservés • <span class="digital-text">Made with discipline</span>
+</footer>
+</div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+function handleForm(e){
+  e.preventDefault();
+  const f = e.target;
+  const data = {name:f.name.value, phone:f.phone.value, msg:f.msg.value};
+  alert('Merci '+data.name+" ! Nous avons reçu votre message. Nous vous contacterons bientôt.");
+  f.reset();
+}
+
+// Hamburger menu toggle
+function toggleMenu(){
+  document.getElementById('nav-links').classList.toggle('show');
+}
+</script>
+</body>
+</html>
