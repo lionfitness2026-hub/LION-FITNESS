@@ -645,7 +645,36 @@ nav.show{display:flex;}}
 </style>
 </head>
 <body>
+<script>
+  const openBtn = document.getElementById('open-video-btn');
+  const modal = document.getElementById('video-modal');
+  const closeBtn = document.getElementById('close-video-btn');
+  const modalVideo = document.getElementById('modal-video');
 
+  openBtn && openBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    // play after showing (some browsers block autoplay)
+    modalVideo.currentTime = 0;
+    modalVideo.play().catch(()=>{ /* play may be blocked until user gesture - but user clicked so OK */ });
+  });
+
+  closeBtn && closeBtn.addEventListener('click', closeModal);
+  modal && modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  function closeModal() {
+    modalVideo.pause();
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  // stop video on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+  });
+</script>
 <!-- Background Video -->
 <video autoplay muted loop playsinline id="bg-video" poster="images/hero-fallback.jpg">
   <source src="hero1.mp4" type="video/mp4" />
@@ -750,7 +779,7 @@ nav.show{display:flex;}}
     <div class="pricing-card featured">
       <div class="ribbon">Populaire</div>
       <h3>6 Mois</h3>
-      <div class="price">1100 MAD <br >6 mois</div>
+      <div class="price">1100 MAD <br >SEMESTRE</div>
       <ul>
         <li>Accès illimité à la salle</li>
         <li>Équipements modernes</li>
@@ -795,6 +824,32 @@ nav.show{display:flex;}}
     </video>
   </div>
 </section>
+      <!-- VIDEO TOUR - Option B (preview + modal) -->
+<section id="video-tour" style="margin-top:40px;padding:24px;">
+  <h3 class="neon-title" style="text-align:center;font-size:28px;">Visite de la salle</h3>
+  <p style="text-align:center;color:var(--muted);margin-bottom:12px;">
+    Cliquez pour lancer la visite vidéo.
+  </p>
+
+  <div class="video-preview" style="max-width:1000px;margin:0 auto;position:relative;">
+    <img src="/images/tour-poster.jpg" alt="Tour Lion Fitness" style="width:100%;display:block;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.6);">
+    <button id="open-video-btn" aria-label="Play tour" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.6);border:0;padding:18px;border-radius:50%;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.6);">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- Modal structure (put near end of body) -->
+<div id="video-modal" aria-hidden="true" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:24px;">
+  <div style="width:100%;max-width:1200px;">
+    <button id="close-video-btn" aria-label="Close video" style="position:absolute;right:18px;top:18px;background:transparent;border:0;color:#fff;font-size:28px;cursor:pointer;">&times;</button>
+    <video id="modal-video" controls playsinline preload="metadata" poster="/images/tour-poster.jpg" style="width:100%;height:auto;border-radius:8px;">
+      <source src="/videos/tour.mp4" type="video/mp4">
+      <source src="/videos/tour.webm" type="video/webm">
+      Votre navigateur ne supporte pas la vidéo HTML5.
+    </video>
+  </div>
+</div>
 <!-- Galerie -->
   <section id="gallery" style="margin-top:40px;">
     <h3 class="neon-title" style="font-size:28px;text-align:center;">Galerie</h3>
@@ -1016,7 +1071,7 @@ nav.show{display:flex;}}
         <textarea name="msg" placeholder="Message (objectif, disponibilité)" rows="4"></textarea>
         <button type="submit">Envoyer</button>
       </form>
-      <p style="margin-top:12px;color:var(--neon)">WhatsApp: <a href="https://wa.me/212642097984" style="color:var(--neon)">+212 6X XX XX XX</a></p>
+      <p style="margin-top:12px;color:var(--neon)">WhatsApp: <a href="https://wa.me/212642097984" style="color:var(--neon)">+212 642097984</a></p>
     </div>
   <section class="contact-section">
   <!-- Adresse -->
